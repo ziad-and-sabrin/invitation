@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دعوة خطوبة زياد وصبرين | Ziad & Sabrin Invitation</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for Calligraphy Arabic and Elegant English Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Language Switcher Button -->
+    <button class="lang-toggle" onclick="toggleLanguage(event)">English</button>
+
+    <div class="invite-container">
+        <!-- The Interactive Card -->
+        <div class="card" onclick="toggleCard(this)">
+            
+            <!-- Front Side -->
+            <div class="card-front">
+                <div class="front-content">
+                    <div class="heart-icon">♥</div>
+                    
+                    <div class="lang-ar">
+                        <h1>زياد & صبرين</h1>
+                        <p class="subtext">يسعدنا إعلان خطوبتنا</p>
+                        <span class="click-hint">اضغط لفتح الدعوة</span>
+                    </div>
+
+                    <div class="lang-en">
+                        <h1>Ziad & Sabrin</h1>
+                        <p class="subtext">Are getting engaged</p>
+                        <span class="click-hint">Click to Open</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back/Inside Side (Details) -->
+            <div class="card-inside">
+                <div class="details-content">
+                    
+                    <!-- Arabic Details -->
+                    <div class="lang-ar">
+                        <p class="celebrate-text">فرحتنا تكتمل بكم</p>
+                        <h2>حفل خطوبة</h2>
+                        <h3>زياد وصبرين</h3>
+                        <hr class="divider">
+                        <p class="date">الجمعة، ١٠ يوليو ٢٠٢٦</p>
+                        <p class="time">في تمام الساعة ٧:٠٠ مساءً</p>
+                        <p class="venue">العنوان: أمام المنزل<br>كفر يوسف</p>
+                        <hr class="divider">
+                        <p class="footer-note">عقبال عندكم جميعاً ويسعدنا حضوركم!</p>
+                    </div>
+
+                    <!-- English Details -->
+                    <div class="lang-en">
+                        <p class="celebrate-text">Save The Date</p>
+                        <h2>The Engagement of</h2>
+                        <h3>Ziad & Sabrin</h3>
+                        <hr class="divider">
+                        <p class="date">Friday, July 10, 2026</p>
+                        <p class="time">at 7:00 PM</p>
+                        <p class="venue">In Front of the House<br>Kafr Youssef</p>
+                        <hr class="divider">
+                        <p class="footer-note">We can't wait to celebrate with you!</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Card Flip Function
+        function toggleCard(card) {
+            card.classList.toggle('is-open');
+        }
+
+        // Language Switcher Function
+        function toggleLanguage(event) {
+            event.stopPropagation(); // Prevents flipping the card when clicking the language button
+            
+            const htmlTag = document.documentElement;
+            const currentLang = htmlTag.getAttribute('lang');
+            const btn = event.target;
+
+            if (currentLang === 'ar') {
+                htmlTag.setAttribute('lang', 'en');
+                htmlTag.setAttribute('dir', 'ltr');
+                btn.textContent = 'العربية';
+            } else {
+                htmlTag.setAttribute('lang', 'ar');
+                htmlTag.setAttribute('dir', 'rtl');
+                btn.textContent = 'English';
+            }
+        }
+    </script>
+</body>
+</html>

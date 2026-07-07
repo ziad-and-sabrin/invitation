@@ -1,0 +1,226 @@
+/* --- Global Reset & Variables --- */
+:root {
+    --primary-gold: #d4af37;
+    --dark-elegant: #1c2321;
+    --light-bg: #f9f6f0;
+    --text-color: #333333;
+    --transition-speed: 0.8s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--light-bg);
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    perspective: 1000px;
+}
+
+/* --- Language Toggle Button Style --- */
+.lang-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: 1px solid var(--primary-gold);
+    color: var(--dark-elegant);
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+/* Flip button position based on language direction */
+html[dir="rtl"] .lang-toggle {
+    right: auto;
+    left: 20px;
+}
+.lang-toggle:hover {
+    background-color: var(--primary-gold);
+    color: white;
+}
+
+/* --- Language Conditional Display --- */
+html[lang="en"] .lang-ar { display: none; }
+html[lang="ar"] .lang-en { display: none; }
+
+/* --- Arabic Specific Typography Override --- */
+html[lang="ar"] {
+    font-family: 'Amiri', serif;
+}
+html[lang="ar"] h1, html[lang="ar"] h3 {
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+}
+
+/* --- The 3D Animated Card --- */
+.invite-container {
+    width: 100%;
+    max-width: 420px;
+    height: 600px;
+    padding: 20px;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border-radius: 12px;
+}
+
+/* Card opens differently based on document text flow */
+html[dir="ltr"] .card.is-open {
+    transform: rotateY(-180deg);
+}
+html[dir="rtl"] .card.is-open {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-inside {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border: 2px solid var(--primary-gold);
+}
+
+/* --- Front Design --- */
+.card-front {
+    background-color: var(--dark-elegant);
+    color: white;
+    text-align: center;
+}
+
+.card-front h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    color: var(--primary-gold);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.heart-icon {
+    font-size: 3rem;
+    color: var(--primary-gold);
+    animation: heartbeat 1.5s infinite;
+    margin-bottom: 20px;
+}
+
+.subtext {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    opacity: 0.8;
+}
+
+.click-hint {
+    margin-top: 50px;
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary-gold);
+    opacity: 0.6;
+}
+
+/* --- Inside Design --- */
+.card-inside {
+    background-color: #ffffff;
+    color: var(--text-color);
+    text-align: center;
+}
+
+/* Inside starts pre-flipped appropriately based on direction */
+html[dir="ltr"] .card-inside { transform: rotateY(180deg); }
+html[dir="rtl"] .card-inside { transform: rotateY(-180deg); }
+
+.celebrate-text {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--primary-gold);
+    margin-bottom: 15px;
+}
+
+.card-inside h2 {
+    font-size: 1.1rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.card-inside h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    color: var(--dark-elegant);
+    margin-bottom: 20px;
+}
+
+.divider {
+    width: 60px;
+    height: 1px;
+    background-color: var(--primary-gold);
+    border: none;
+    margin: 20px auto;
+}
+
+.date {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--dark-elegant);
+}
+
+.time, .venue {
+    margin-top: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.footer-note {
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+/* --- Heartbeat Animation --- */
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    20% { transform: scale(1.15); }
+    40% { transform: scale(1); }
+    60% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 480px) {
+    .invite-container {
+        height: 85vh;
+    }
+    .card-front h1, .card-inside h3 {
+        font-size: 1.8rem;
+    }
+    .card-front, .card-inside {
+        padding: 25px;
+    }
+}
